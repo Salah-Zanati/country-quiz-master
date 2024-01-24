@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Option from "./Option";
 import adventureImg from "../assets/undraw_adventure_4hum 1.svg";
 import { useQuery, gql } from "@apollo/client";
@@ -31,7 +31,7 @@ const Card = ({ setDone, setRes, res }) => {
   useEffect(() => {
     countries && setQuestion(displayData(countries));
     setAssis(res);
-  }, []);
+  }, [countries]);
   useEffect(() => {
     setAssis(res);
   }, [question]);
