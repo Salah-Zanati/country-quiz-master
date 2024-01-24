@@ -15,9 +15,12 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <>
-        <div className="min-h-[90vh] mt-10 flex items-center justify-center flex-col">
-          <div>
-            <div className=" mb-[10px] w-full  text-zinc-100 text-4xl font-bold font-['Poppins'] uppercase">
+        <div
+          id="app"
+          className="min-h-[90vh] mt-10 flex items-center justify-center flex-col"
+        >
+          <div className="w-[90%] sm:w-auto">
+            <div className="mb-[10px] w-full  text-zinc-100 text-4xl font-bold font-['Poppins'] uppercase">
               Country quiz
             </div>
             {done === false ? (

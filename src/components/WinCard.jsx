@@ -3,7 +3,7 @@ import winnersImg from "../assets/undraw_winners_ao2o 2.svg";
 // eslint-disable-next-line react/prop-types
 const WinCard = ({ setDone, res, setRes }) => {
   return (
-    <div className="w-[464px] h-[542px] bg-white rounded-3xl flex flex-col items-center justify-center text-center gap-[72px]">
+    <div className="w-full h-[542px] bg-white rounded-3xl flex flex-col items-center justify-center text-center gap-[72px]">
       <img src={winnersImg} className="w-[238px] h-[136px]" />
       <div>
         <div className="text-blue-950 text-5xl font-bold font-['Poppins']">

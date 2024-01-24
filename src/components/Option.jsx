@@ -3,16 +3,7 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useEffect, useState } from "react";
 
-const Option = ({
-  num,
-  text,
-  correct,
-  chosen,
-  setChosen,
-  setRes,
-  res,
-  setDone,
-}) => {
+const Option = ({ num, text, correct, chosen, setChosen, setRes, res }) => {
   const [clicked, setClicked] = useState(false);
   const [answer, setAnswer] = useState();
 
@@ -20,7 +11,7 @@ const Option = ({
     if (chosen) {
       clicked && correct && setAnswer(true) / setRes(res + 1);
       !clicked && correct && setAnswer(true);
-      clicked && !correct && setAnswer(false) / setDone(true);
+      clicked && !correct && setAnswer(false);
       !clicked && !correct && setAnswer(null);
     } else {
       setAnswer(undefined);
@@ -33,7 +24,7 @@ const Option = ({
       onClick={() => {
         !chosen && setChosen(true) / setClicked(true);
       }}
-      className={`w-[400px] py-[10px] px-[19px] text-indigo-500 rounded-xl flex items-center gap-[46px] ${
+      className={`py-[10px] px-[19px] text-indigo-500 rounded-xl flex items-center gap-[46px] ${
         answer === false
           ? "bg-rose-400 text-white"
           : answer === true

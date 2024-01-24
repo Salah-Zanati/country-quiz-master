@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Option from "./Option";
 import adventureImg from "../assets/undraw_adventure_4hum 1.svg";
 import { useQuery, gql } from "@apollo/client";
@@ -25,16 +25,22 @@ const Card = ({ setDone, setRes, res }) => {
   const { data: countries } = useQuery(QUERY_ALL_COUNTRIES);
 
   const [question, setQuestion] = useState();
+  const [chosen, setChosen] = useState();
+  const [assis, setAssis] = useState(0);
+
   useEffect(() => {
     countries && setQuestion(displayData(countries));
-  }, [countries]);
+    setAssis(res);
+  }, []);
+  useEffect(() => {
+    setAssis(res);
+  }, [question]);
 
-  const [chosen, setChosen] = useState();
   return (
-    <div className="w-[464px] px-[32px] pt-[68px] pb-[32px] bg-white rounded-3xl flex flex-col relative">
+    <div className="w-full sm:w-[464px] px-[32px] pt-[68px] pb-[32px] bg-white rounded-3xl flex flex-col relative">
       <img
         src={adventureImg}
-        className="w-[162px] h-[116px] absolute top-[-74px] right-0 z-10"
+        className="hidden sm:block w-full sm:w-[162px] h-[116px] absolute top-[-74px] right-0 z-10"
       />
       {question ? (
         <>
@@ -44,7 +50,7 @@ const Card = ({ setDone, setRes, res }) => {
             }`}
             src={question.flag && question.flag}
           />
-          <div className="w-[373px] mb-[32px] text-cyan-800 text-2xl font-bold font-['Poppins']">
+          <div className="w-full sm:w-[373px] mb-[32px] text-cyan-800 text-2xl font-bold font-['Poppins']">
             {question.question}
           </div>
           <div className="flex flex-col gap-[25px]">
@@ -71,8 +77,9 @@ const Card = ({ setDone, setRes, res }) => {
           {chosen !== undefined && (
             <button
               onClick={() => {
-                setChosen(undefined);
-                setQuestion(displayData(countries));
+                assis !== res
+                  ? setChosen(undefined) / setQuestion(displayData(countries))
+                  : setDone(true);
               }}
               className="px-[36px] py-[14px] mt-[24px] bg-amber-400 rounded-xl shadow self-end text-white text-lg font-bold font-['Poppins']"
             >
